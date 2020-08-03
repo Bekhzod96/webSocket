@@ -13,9 +13,7 @@ const ws = new WebSocket(`ws://localhost:${port}`, {headers: {'deviceId': 'Bekhz
 
 ws.on('open', function incoming(data) {
 
-  setTimeout(() =>  {
-    ws.send(Date.now());
-	}, 50);
+  ws.send('This is message')
 	
 
 });

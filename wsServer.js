@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
-import 'fs' from 'fs'
+const fs = require('fs');
 const { port } = require('./config');
 const wss = new WebSocket.Server({ port }, () =>{
 	console.log('WebSocket is running on ' + port)
@@ -32,10 +32,20 @@ wss.on('connection', (ws, req, client) => {
 	
   ws.on('message', (msg) => {
 		console.log(`Received Message ${msg}. \n From ${ JSON.stringify(req.headers['deviceid'])}`)
+		let time = new Date().toISOString();
+		fs.appendFile('./Logs/messageLogs.txt', `${time} ->  ${msg} \n`, (err) => {
+			if (err) throw err;
+			console.log('Saved!');
+		});
 	});
 	
 	ws.on('data', (data) => {
-		console.log('Received data ' + data.toString)
+		console.log('Received data ' + data.toString);
+		let time = new Date().toISOString();
+		fs.appendFile('./Logs/dataLogs.txt', `${time} ->  ${msg} \n`, (err) => {
+			if (err) throw err;
+			console.log('Saved!');
+		});
   });
 });
 
