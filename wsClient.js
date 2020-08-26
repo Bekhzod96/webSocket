@@ -2,20 +2,16 @@ const WebSocket = require('ws');
 const { port } = require('./config');
 
 const cred = {
-	headers: {
-		'sec-websocket-key' : 'SecretKeyForGettingAccessToWebSocketFromESP',
-		'DeviceId': 'HeyHereIsDeviceID'
-	}
-}
+  headers: {
+    'sec-websocket-key': 'SecretKeyForGettingAccessToWebSocketFromESP',
+    DeviceId: 'HeyHereIsDeviceID',
+  },
+};
 
-
-const ws = new WebSocket(`ws://localhost:${port}`, {headers: {'deviceId': 'Bekhzod'}});
+const ws = new WebSocket(`wss://0.0.0.0:8080`);
 
 ws.on('open', function incoming(data) {
-
-  ws.send('This is message')
-	
-
+  ws.send('This is message');
 });
 
 // ws.on('open', function open() {
