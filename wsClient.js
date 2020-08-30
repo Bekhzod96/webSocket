@@ -8,7 +8,7 @@ const cred = {
   },
 };
 
-const ws = new WebSocket(`wss://0.0.0.0:8080`);
+const ws = new WebSocket(`ws://localhost:1337`);
 
 ws.on('open', function incoming(data) {
   ws.send('This is message');

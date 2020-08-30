@@ -57,34 +57,6 @@ ws.on('connection', (ws, req, client) => {
 
 //------------------------------------------------------------Second version -----------------------------------------------------
 
-const https = require('https');
-
-const privateKey = fs.readFileSync(
-  '/etc/letsencrypt/live/dev3.arc.lv/privkey.pem',
-  'utf8'
-);
-const certificate = fs.readFileSync(
-  '/etc/letsencrypt/live/dev3.arc.lv/cert.pem',
-  'utf8'
-);
-const ca = fs.readFileSync(
-  '/etc/letsencrypt/live/dev3.arc.lv/chain.pem',
-  'utf8'
-);
-
-const credentials = {
-  key: privateKey,
-  cert: certificate,
-  ca: ca,
-};
-
-const server = https.createServer({ credentials });
-const wss = new WebSocket.Server({ server });
-
-wss.listen(port_wss, () => {
-  console.log('WebSocket Secure Up and Listening on port - ' + port_wss);
-});
-
 // server.on('connection', (req) => {
 // 	server.on('message', (msg)=> {
 // 		console.log(`Received message ${msg} from user ${client}`);
